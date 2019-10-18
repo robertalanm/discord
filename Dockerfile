@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3 
 
-RUN apt install -y git python3 python3-pip && \
-	git clone https://github.com/robertalanm/discord.git
+RUN apt install -y git python3 python3-pip wget && \
+git clone https://github.com/robertalanm/discord.git
 
 WORKDIR discord
 
