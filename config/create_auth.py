@@ -1,10 +1,9 @@
-import numpy as np
 
 filename = "auth.json"
 
 class Models():
-    client_id = np.array([])
-    token = np.array([])
+    client_id = ""
+    token = ""
 
 
 def read():
