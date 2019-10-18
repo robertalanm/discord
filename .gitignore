@@ -2,7 +2,7 @@
 *.secret
 auth.json
 db.json
-
+.secret
 
 # Model
 
