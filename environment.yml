@@ -1,0 +1,5 @@
+name: sybil_discord
+dependencies:
+- python=3.7
+- numpy
+- pandas
