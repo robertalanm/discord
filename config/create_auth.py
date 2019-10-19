@@ -11,8 +11,8 @@ def read():
         array = []
         for line in ins:
             array.append(line)
-    Models.client_id = array[0]
-    Models.token = array[1]
+    Models.client_id = '{}'.format(array[0])
+    Models.token = '{}'.format(array[1])
 
 
 def create():
@@ -20,9 +20,16 @@ def create():
         client_id = Models.client_id
         token = Models.token
         
-        text = "{\n    \"token\": \"" + token + "\",\n    \"client_id\" \"" + client_id + "\"\n}"
+        #text = '{"token": "' + token + '", ' 
+        #client = '"client_id": "' + client_id +  '"}'
+        
+        #text = '{ "token": "{0}", "client_id": "{1}" }'.format(token, client_id)
+        token = '{ \"token\": ' + token + ' "client_id": ' + client_id + ' }' 
+        spacer = '\", '
+        #f.write(text)
+        #print(token + spacer)
+        f.write(token)
 
-        f.write(text)
 
 read()
 create()

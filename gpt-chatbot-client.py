@@ -8,7 +8,7 @@ from gptchatbot import GPT2Bot
 logging.basicConfig(level=logging.INFO)
 
 with open('./config/auth.json') as data_file:
-    auth = json.load(data_file)
+    auth = json.load(data_file, strict=False)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('!'), description='TLM', max_messages=5000)
 # gptCog = GPT2Bot(bot)

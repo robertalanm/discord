@@ -1,26 +1,29 @@
-FROM continuumio/miniconda3 
+FROM ubuntu
 
-RUN apt install -y git python3 python3-pip wget curl && \
-git clone https://github.com/robertalanm/discord.git
+RUN apt update && \
+    apt install -y git python3 python3-virtualenv python3-pip curl && \
+    git clone https://github.com/robertalanm/discord.git
+
+RUN python3 -m virtualenv --python=/usr/bin/python3 /opt/venv
+
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 
 WORKDIR discord
 
 add .secrets /discord/config/.secrets
 
-RUN [ "conda", "env", "create" ]
-
-RUN [ "/bin/bash", "-c", "source activate sybil_discord" ]
-
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 RUN chmod +x download_model.sh && \ 
 ./download_model.sh 774M
 
 WORKDIR config
 
-RUN python3 create_auth.py 
+RUN python create_auth.py 
 
-RUN cd ..
+WORKDIR /discord/
 
-RUN python3 gpt-chatbot-client.py
+CMD ["python", "gpt-chatbot-client.py"]
