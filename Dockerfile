@@ -1,7 +1,7 @@
 FROM ubuntu
 
 RUN apt update && \
-    apt install -y git python3 python3-virtualenv python3-pip curl && \
+    apt install -y git python3 wget python3-virtualenv python3-pip curl && \
     git clone https://github.com/robertalanm/discord.git
 
 RUN python3 -m virtualenv --python=/usr/bin/python3 /opt/venv

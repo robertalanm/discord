@@ -4,6 +4,11 @@ import logging
 import inspect
 from discord.ext import commands
 from gptchatbot import GPT2Bot
+import os
+
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 
 logging.basicConfig(level=logging.INFO)
 
